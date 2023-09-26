@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home_screen.dart';
+import 'start_screen.dart';
 
 void main() {
   runApp(const App());
@@ -15,8 +15,8 @@ class App extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: Scaffold(
-        body: HomeScreen(),
+      home: const Scaffold(
+        body: StartScreen(),
       ),
     );
   }

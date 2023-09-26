@@ -5,20 +5,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: <Widget>[
-          SizedBox(
-            width: 300,
-            height: 300,
-            child: Image.asset(
-              'assets/images/hyakumansan.jpeg',
-              fit: BoxFit.contain,
-            ),
-          ),
-          Text('石川をもっと楽しもう！')
-        ],
-      ),
+    return Scaffold(
+      body: Center(child: Text('Home')),
     );
   }
 }
