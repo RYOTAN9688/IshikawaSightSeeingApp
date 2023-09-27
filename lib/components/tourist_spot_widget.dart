@@ -19,21 +19,23 @@ class TouristSpotWidget extends StatelessWidget {
       itemCount: touristSpots.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: 8.0 / 9.0,
+        childAspectRatio: 8.0 / 10.0,
       ),
       itemBuilder: (context, index) {
         final entry = touristSpots[index];
         return Card(
           clipBehavior: Clip.antiAlias,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AspectRatio(
-                aspectRatio: 18 / 12,
+                aspectRatio: 16 / 12,
                 child: Image.network(entry.url, fit: BoxFit.fill),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(entry.district),
                     Text(
@@ -43,8 +45,12 @@ class TouristSpotWidget extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 5),
-                    Text(entry.address)
+                    Text(
+                      entry.address,
+                      style: GoogleFonts.lato(
+                          fontSize: 12,
+                          color: Color.fromARGB(255, 118, 117, 117)),
+                    )
                   ],
                 ),
               ),
