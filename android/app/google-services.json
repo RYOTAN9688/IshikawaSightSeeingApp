@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "39114810974",
+    "project_id": "ishikawasightseeingapp",
+    "storage_bucket": "ishikawasightseeingapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39114810974:android:72f28e3d49e327056836cf",
+        "android_client_info": {
+          "package_name": "com.example.isikawa_sightseeing_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2wKlxBR-tlC8RUoxjv1XRQB-tmW2UK7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
