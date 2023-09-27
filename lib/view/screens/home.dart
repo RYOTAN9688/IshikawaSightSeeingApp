@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: const Text('Home'),
       ),
       body: GridView.count(
         crossAxisCount: 2,
@@ -47,6 +47,17 @@ class HomeScreen extends StatelessWidget {
         childAspectRatio: 8.0 / 9.0,
         children: _buildGridCards(context),
       ),
+      bottomNavigationBar:
+          BottomNavigationBar(items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'ホーム',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.settings),
+          label: '設定',
+        ),
+      ]),
     );
   }
 }
