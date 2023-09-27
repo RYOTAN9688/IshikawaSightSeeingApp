@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:isikawa_sightseeing_app/model/tourist_spot.dart';
 import 'package:isikawa_sightseeing_app/service/firestore_service.dart';
@@ -14,10 +17,25 @@ class _MyWidgetState extends State<DataAddScreen> {
   final TextEditingController _districtController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
+  File? _image;
 
   final FirestoreService _firestoreService = FirestoreService();
+  final ImagePicker picker = ImagePicker();
 
-  void _saveTouristSpotEntry() async {
+  Future<void> _pickImage(ImageSource source) async {
+    try {
+      final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+      if (pickedFile == null) {
+        return;
+      }
+      _image = File(pickedFile.path);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> _saveTouristSpotEntry() async {
     final district = _districtController.text;
     final name = _nameController.text;
     final address = _addressController.text;
@@ -26,11 +44,15 @@ class _MyWidgetState extends State<DataAddScreen> {
       district: district,
       name: name,
       address: address,
+      url: _image.toString(),
     );
-    await _firestoreService.addTouristSpotsEntry(newEntry);
-    _districtController.clear();
-    _nameController.clear();
-    _addressController.clear();
+    await _firestoreService.addTouristSpotsEntry(newEntry, _image!);
+
+    setState(() {
+      _districtController.clear();
+      _nameController.clear();
+      _addressController.clear();
+    });
 
     _showSaveConfirmationModal();
   }
@@ -83,6 +105,10 @@ class _MyWidgetState extends State<DataAddScreen> {
               controller: _addressController,
               maxLines: 5,
               decoration: const InputDecoration(labelText: '住所'),
+            ),
+            IconButton(
+              icon: const Icon(Icons.photo_library),
+              onPressed: () => _pickImage(ImageSource.gallery),
             ),
             const SizedBox(height: 16),
             ElevatedButton(

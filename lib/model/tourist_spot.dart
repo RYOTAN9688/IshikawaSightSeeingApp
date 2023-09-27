@@ -5,11 +5,13 @@ class TouristSpot {
     required this.district,
     required this.name,
     required this.address,
+    required this.url,
   });
 
   final String district;
   final String name;
   final String address;
+  final String url;
 
   factory TouristSpot.fromFirestore(
       QueryDocumentSnapshot<Map<String, dynamic>> snapshot) {
@@ -18,6 +20,7 @@ class TouristSpot {
       district: data['district'],
       name: data['name'],
       address: data['address'],
+      url: data['url'],
     );
   }
 }
