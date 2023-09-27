@@ -13,7 +13,7 @@ class FirestoreService {
       return entries;
     } catch (e) {
       // ignore: avoid_print
-      print('Error fetching diary entries: $e');
+      print('Error fetching getTouristSpots : $e');
       return [];
     }
   }
@@ -21,10 +21,9 @@ class FirestoreService {
   Future<void> addTouristSpotsEntry(TouristSpot touristSpot) async {
     try {
       await _firestore.collection('tourist_spot').add({
-        'id': touristSpot.id,
         'district': touristSpot.district,
         'name': touristSpot.name,
-        'adress': touristSpot.address,
+        'address': touristSpot.address,
       });
     } catch (e) {
       // ignore: avoid_print

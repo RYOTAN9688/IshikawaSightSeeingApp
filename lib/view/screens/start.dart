@@ -2,8 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
-
-import 'home.dart';
+import 'package:isikawa_sightseeing_app/view/navigation.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
@@ -23,7 +22,7 @@ class _StartScreenState extends State<StartScreen> {
       () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
+          builder: (context) => const Navigation(),
         ),
       ),
     );

@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:isikawa_sightseeing_app/model/tourist_spot.dart';
 import 'package:isikawa_sightseeing_app/service/firestore_service.dart';
 
-class MyWidget extends StatefulWidget {
-  const MyWidget({super.key});
+class DataAddScreen extends StatefulWidget {
+  const DataAddScreen({super.key});
 
   @override
-  State<MyWidget> createState() => _MyWidgetState();
+  State<DataAddScreen> createState() => _MyWidgetState();
 }
 
-class _MyWidgetState extends State<MyWidget> {
-  final TextEditingController _idController = TextEditingController();
+class _MyWidgetState extends State<DataAddScreen> {
   final TextEditingController _districtController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
@@ -21,18 +18,20 @@ class _MyWidgetState extends State<MyWidget> {
   final FirestoreService _firestoreService = FirestoreService();
 
   void _saveTouristSpotEntry() async {
-    final id = _idController.value as int;
-    final district = _districtController.text as District;
+    final district = _districtController.text;
     final name = _nameController.text;
     final address = _addressController.text;
 
     final newEntry = TouristSpot(
-      id: id,
       district: district,
       name: name,
       address: address,
     );
     await _firestoreService.addTouristSpotsEntry(newEntry);
+    _districtController.clear();
+    _nameController.clear();
+    _addressController.clear();
+
     _showSaveConfirmationModal();
   }
 
@@ -67,23 +66,19 @@ class _MyWidgetState extends State<MyWidget> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            TextField(
-              controller: _idController,
-              decoration: const InputDecoration(labelText: 'id'),
-            ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 5),
             TextField(
               controller: _districtController,
               maxLines: 5,
               decoration: const InputDecoration(labelText: '地域'),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 5),
             TextField(
               controller: _nameController,
               maxLines: 5,
               decoration: const InputDecoration(labelText: '観光地'),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 5),
             TextField(
               controller: _addressController,
               maxLines: 5,

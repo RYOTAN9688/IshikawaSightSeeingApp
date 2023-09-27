@@ -1,38 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:isikawa_sightseeing_app/components/tourist_spot_widget.dart';
 import 'package:isikawa_sightseeing_app/model/tourist_spot.dart';
-import 'package:isikawa_sightseeing_app/model/tourist_spot_repository.dart';
+import 'package:isikawa_sightseeing_app/service/firestore_service.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
-  List<Card> _buildGridCards(BuildContext context) {
-    List<TouristSpot> touristSpot =
-        TouristSpotRepository.loadTouristSpots(District.all);
-    if (touristSpot.isEmpty) {
-      return const <Card>[];
-    }
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
 
-    final ThemeData theme = Theme.of(context);
+class _HomeScreenState extends State<HomeScreen> {
+  List<TouristSpot> _touristSpots = [];
 
-    return touristSpot.map((touristSpot) {
-      return Card(
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            AspectRatio(
-              aspectRatio: 18 / 12,
-              child: Image.asset(
-                touristSpot.assetName,
-                fit: BoxFit.fill,
-              ),
-            ),
-            Text(touristSpot.name),
-            Text(touristSpot.address),
-          ],
-        ),
-      );
-    }).toList();
+  @override
+  void initState() {
+    super.initState();
+    _loadTouristSpots();
+  }
+
+  Future<void> _loadTouristSpots() async {
+    final firestoreService = FirestoreService();
+    final entries = await firestoreService.getTouristSpots();
+    setState(() {
+      _touristSpots = entries;
+    });
   }
 
   @override
@@ -41,23 +33,9 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      body: GridView.count(
-        crossAxisCount: 2,
-        padding: const EdgeInsets.all(16.0),
-        childAspectRatio: 8.0 / 9.0,
-        children: _buildGridCards(context),
+      body: TouristSpotWidget(
+        touristSpots: _touristSpots,
       ),
-      bottomNavigationBar:
-          BottomNavigationBar(items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'ホーム',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: '設定',
-        ),
-      ]),
     );
   }
 }
