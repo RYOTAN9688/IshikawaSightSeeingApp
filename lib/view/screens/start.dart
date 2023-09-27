@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-import 'home_screen.dart';
+import 'home.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
