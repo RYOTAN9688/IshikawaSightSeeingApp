@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:isikawa_sightseeing_app/components/tourist_spot_widget.dart';
 import 'package:isikawa_sightseeing_app/model/tourist_spot.dart';
 import 'package:isikawa_sightseeing_app/service/firestore_service.dart';
+import 'package:isikawa_sightseeing_app/view/screens/tourist_spot_detail.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -33,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'おすすめスポット',
           style: GoogleFonts.lato(fontWeight: FontWeight.bold),
@@ -40,6 +42,14 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: TouristSpotWidget(
         touristSpots: _touristSpots,
+        onEntryTapped: (touritspot) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    TouristSpotDetail(touristSpot: touritspot)),
+          );
+        },
       ),
     );
   }
