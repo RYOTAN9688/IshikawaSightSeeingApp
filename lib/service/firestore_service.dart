@@ -32,12 +32,16 @@ class FirestoreService {
 
       // アップロードした写真のURLを取得する
       String url = await snapshot.ref.getDownloadURL();
-      print(url);
       await _firestore.collection('tourist_spot').add({
         'district': touristSpot.district,
         'name': touristSpot.name,
         'address': touristSpot.address,
         'url': url,
+        'tel': touristSpot.tel,
+        'timeFromStation': touristSpot.timeFromStation,
+        'businessHours': touristSpot.businessHours,
+        'holiday': touristSpot.holiday,
+        'homepageLink': touristSpot.homepageLink,
       });
     } catch (e) {
       // ignore: avoid_print
