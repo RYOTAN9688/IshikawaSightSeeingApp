@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_map/plugin_api.dart';
-import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
+
 import 'package:latlong2/latlong.dart';
 
 class MapScreen extends StatelessWidget {
@@ -11,7 +11,7 @@ class MapScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterMap(
       options: MapOptions(
-        center: LatLng(36.5780818, 136.6478206),
+        center: const LatLng(36.5780818, 136.6478206),
         zoom: 16.0,
       ),
       nonRotatedChildren: [
