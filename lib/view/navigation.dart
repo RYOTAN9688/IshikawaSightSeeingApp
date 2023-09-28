@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:isikawa_sightseeing_app/view/screens/data_add.dart';
 import 'package:isikawa_sightseeing_app/view/screens/home.dart';
+import 'package:isikawa_sightseeing_app/view/screens/map.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -12,6 +13,7 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
   static const _screens = [
     HomeScreen(),
+    MapScreen(),
     DataAddScreen(),
   ];
 
@@ -32,6 +34,10 @@ class _NavigationState extends State<Navigation> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'ホーム',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: '地図',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
