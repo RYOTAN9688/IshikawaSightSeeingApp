@@ -10,6 +10,10 @@
     <string>This app requires to add file to your camera</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>This app requires to add file to your photo library your microphone</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs access to location when open.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app needs access to location when in the background.</string>
 	<key>CFBundleDisplayName</key>
 	<string>Isikawa Sightseeing App</string>
 	<key>CFBundleExecutable</key>
@@ -51,5 +55,10 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+  		<string>sms</string>
+  		<string>tel</string>
+	</array>
 </dict>
 </plist>

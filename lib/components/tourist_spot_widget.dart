@@ -51,7 +51,7 @@ class TouristSpotWidget extends StatelessWidget {
                         entry.address,
                         style: GoogleFonts.lato(
                             fontSize: 12,
-                            color: Color.fromARGB(255, 118, 117, 117)),
+                            color: const Color.fromARGB(255, 118, 117, 117)),
                       )
                     ],
                   ),
